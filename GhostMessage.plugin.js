@@ -1,4 +1,4 @@
-//META{"name":"GhostMessage","website":"https://khub.kyza.gq/?plugin=GhostMessage","source":"https://raw.githubusercontent.com/KyzaGitHub/Khub/master/Plugins/GhostMessage/GhostMessage.plugin.js"}*//
+//META{"name":"GhostMessage","website":"","source":"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessage.plugin.js"}*//
 
 /*@cc_on
 @if (@_jscript)
@@ -25,20 +25,25 @@
 @else@*/
 const config = {
 	info: {
-		name: "GhostMessage",
+		name: "GhostMessage FIXED",
 		authors: [
+			{
+				name: "Hoofer#0001 | https://twitter.com/leHoofer",
+				discord_id: "547951620235984906",
+				github_username: "leHoofer"
+			},
 			{
 				name: "Kyza",
 				discord_id: "220584715265114113",
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.3.1",
-		description: "Send messages that delete themselves.",
+		version: "1.1.0",
+		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
-			"https://github.com/KyzaGitHub/Khub/tree/master/Plugins/GhostMessage",
+			"https://github.com/leHoofer/GhostMessage-Fixed",
 		github_raw:
-			"https://raw.githubusercontent.com/KyzaGitHub/Khub/master/Plugins/GhostMessage/GhostMessage.plugin.js"
+			"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessage.plugin.js"
 	},
 	changelog: [
 		// {
@@ -50,8 +55,15 @@ const config = {
 		  title: "Bugs Squashed",
 		  type: "fixed",
 		  items: [
-			"Fixed the plugin not asking to download KSSLibrary."
+			"Fixed the Plugin Config from not loading in the correct order."
 		  ]
+		},
+		{
+			title:"Improvements",
+			type: "improved",
+			items: [
+				"Added a red color to show when ghost message is enabled."
+			]
 		}
 		// 	    ,
 		// {
