@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.1.0",
+		version: "1.1.1",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -300,7 +300,7 @@ var GhostMessage = (() => {
 									new Settings.RadioGroup("Enable / Disable", "Show or Hide the Ghost Message Toggle Button", this.settings.buttonEnabled, [
 										{name: "Show", value: true, desc: "Show the GhostMessage Toggle Button"},
 										{name: "Hide", value: false, desc: "Hide the GhostMessage Toggle Button"}
-									], (e) => {this.settings.buttonEnabled = e; if (this.settings.buttonEnabled == true ){ ghostButton.setAttribute("style", "display: none;") }  else { ghostButton.setAttribute("style", "") }; })
+									], (e) => {this.settings.buttonEnabled = e; if (this.settings.buttonEnabled == false ){ ghostButton.setAttribute("style", "display: none;") }  else { ghostButton.setAttribute("style", "") }; })
 								)
 							);
 						}
