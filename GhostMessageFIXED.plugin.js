@@ -23,6 +23,11 @@
 	WScript.Quit();
 
 @else@*/
+var ghostButtonMask = document.createElementNS(
+	"http://www.w3.org/2000/svg",
+	"svg"
+);
+var ghostButton = document.createElement("button");
 const config = {
 	info: {
 		name: "GhostMessage FIXED",
@@ -38,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.0.1",
+		version: "1.1.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -62,7 +67,9 @@ const config = {
 			title:"Improvements",
 			type: "improved",
 			items: [
-				"Added a red color to show when ghost message is enabled."
+				"Added a red color to show when ghost message is enabled.",
+				"Added Settings.",
+				"Added a toggle for the GhostMessage Button to appear in settings."
 			]
 		}
 		// 	    ,
@@ -271,6 +278,9 @@ var GhostMessage = (() => {
 								getLibraries_220584715265114113();
 							}
 
+							this.defaultSettings = {buttonEnabled: true};
+							this.settings = Object.assign({}, this.defaultSettings);
+							
 							PluginUpdater.checkForUpdate(
 								"GhostMessage",
 								this.getVersion(),
@@ -284,6 +294,17 @@ var GhostMessage = (() => {
 							this.patch();
 						}
 
+						getSettingsPanel() {
+							return Settings.SettingPanel.build(this.saveSettings.bind(this), 
+								new Settings.SettingGroup("Plugin Options", {shown: true}).append(
+									new Settings.RadioGroup("Enable / Disable", "Show or Hide the Ghost Message Toggle Button", this.settings.buttonEnabled, [
+										{name: "Show", value: true, desc: "Show the GhostMessage Toggle Button"},
+										{name: "Hide", value: false, desc: "Hide the GhostMessage Toggle Button"}
+									], (e) => {this.settings.buttonEnabled = e; if (this.settings.buttonEnabled == true ){ ghostButton.setAttribute("style", "display: none;") }  else { ghostButton.setAttribute("style", "") }; })
+								)
+							);
+						}
+						
 						patch() {
 							// Patch when a normal message is sent.
 							Patcher.after(
@@ -421,7 +442,7 @@ var GhostMessage = (() => {
 											KSS.parse("|highBackgroundOpacity buttons|")
 										);
 
-										var ghostButton = document.createElement("button");
+										
 										ghostButton.setAttribute("type", "button");
 										ghostButton.className = KSS.createClassName(
 											"|active buttonWrapper| |button| |lookBlank| |colorBrand| |grow| ghost-button-wrapper"
@@ -435,14 +456,12 @@ var GhostMessage = (() => {
 										//<img src="https://image.flaticon.com/icons/svg/24/24207.svg" width="224" height="224" alt="Embed free icon" title="Embed free icon">
 										//<svg version="1.1" xmlns="http://www.w3.org/2000/svg" class="icon-3D60ES da-icon" viewBox="0 0 22 22" fill="currentColor"><path d="M 19.794, 3.299 H 9.765 L 8.797, 0 h -6.598 C 0.99, 0, 0, 0.99, 0, 2.199 V 16.495 c 0, 1.21, 0.99, 2.199, 2.199, 2.199 H 9.897 l 1.1, 3.299 H 19.794 c 1.21, 0, 2.199 -0.99, 2.199 -2.199 V 5.498 C 21.993, 4.289, 21.003, 3.299, 19.794, 3.299 z M 5.68, 13.839 c -2.48, 0 -4.492 -2.018 -4.492 -4.492 s 2.018 -4.492, 4.492 -4.492 c 1.144, 0, 2.183, 0.407, 3.008, 1.171 l 0.071, 0.071 l -1.342, 1.298 l -0.066 -0.06 c -0.313 -0.297 -0.858 -0.643 -1.671 -0.643 c -1.441, 0 -2.612, 1.193 -2.612, 2.661 c 0, 1.468, 1.171, 2.661, 2.612, 2.661 c 1.507, 0, 2.161 -0.962, 2.337 -1.606 h -2.43 v -1.704 h 4.344 l 0.016, 0.077 c 0.044, 0.231, 0.06, 0.434, 0.06, 0.665 C 10.001, 12.036, 8.225, 13.839, 5.68, 13.839 z M 11.739, 9.979 h 4.393 c 0, 0 -0.374, 1.446 -1.715, 3.008 c -0.588 -0.676 -0.995 -1.336 -1.254 -1.864 h -1.089 L 11.739, 9.979 z M 13.625, 13.839 l -0.588, 0.583 l -0.72 -2.452 C 12.685, 12.63, 13.13, 13.262, 13.625, 13.839 z M 20.893, 19.794 c 0, 0.605 -0.495, 1.1 -1.1, 1.1 H 12.096 l 2.199 -2.199 l -0.896 -3.041 l 1.012 -1.012 l 2.953, 2.953 l 0.803 -0.803 l -2.975 -2.953 c 0.99 -1.138, 1.759 -2.474, 2.106 -3.854 h 1.397 V 8.841 H 14.697 v -1.144 h -1.144 v 1.144 H 11.398 l -1.309 -4.443 H 19.794 c 0.605, 0, 1.1, 0.495, 1.1, 1.1 V 19.794 z"></path></svg>
 
-										var ghostButtonMask = document.createElementNS(
-											"http://www.w3.org/2000/svg",
-											"svg"
-										);
+
 										ghostButtonMask.setAttribute("width", "18");
 										ghostButtonMask.setAttribute("height", "18");
 										ghostButtonMask.setAttribute("viewBox", "0 0 450.002 450.002");
 										ghostButtonMask.setAttribute("class", "icon-3D60ES");
+										ghostButton.setAttribute("style", "")
 
 										var ghostButtonIcon = document.createElementNS(
 											"http://www.w3.org/2000/svg",
