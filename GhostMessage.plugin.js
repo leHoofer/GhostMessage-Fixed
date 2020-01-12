@@ -38,7 +38,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.1.0",
+		version: "1.0.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed",
