@@ -1,4 +1,4 @@
-//META{"name":"GhostMessage","website":"","source":"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessage.plugin.js"}*//
+//META{"name":"GhostMessage","website":"","source":"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"}*//
 
 /*@cc_on
 @if (@_jscript)
@@ -41,9 +41,9 @@ const config = {
 		version: "1.0.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
-			"https://github.com/leHoofer/GhostMessage-Fixed",
+			"https://github.com/leHoofer/GhostMessage-Fixed/",
 		github_raw:
-			"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessage.plugin.js"
+			"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
 	},
 	changelog: [
 		// {
@@ -274,7 +274,7 @@ var GhostMessage = (() => {
 							PluginUpdater.checkForUpdate(
 								"GhostMessage",
 								this.getVersion(),
-								"https://raw.githubusercontent.com/KyzaGitHub/Khub/master/Plugins/GhostMessage/GhostMessage.plugin.js"
+								"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
 							);
 
 							KSS = new KSSLibrary(this);
