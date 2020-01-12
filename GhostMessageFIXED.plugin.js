@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.2.1",
+		version: "1.3.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -60,10 +60,10 @@ const config = {
 		  title: "Bugs Squashed",
 		  type: "fixed",
 		  items: [
-			"Fixed the Plugin Config from not loading in the correct order."
+			"Fixed Ghost Message Button not working when going into other Channels."
 		  ]
 		},
-		{
+		/*{
 			title:"Improvements",
 			type: "improved",
 			items: [
@@ -71,7 +71,7 @@ const config = {
 				"Added Settings.",
 				"Added a toggle for the GhostMessage Button to appear in settings."
 			]
-		}
+		}*/
 		// 	    ,
 		// {
 		// 	title: "Improvements",
@@ -423,7 +423,7 @@ var GhostMessage = (() => {
 								}
 							}
 						}
-
+						
 						addButton() {
 							let channel = DiscordAPI.currentChannel;
 							// console.log(channel);
@@ -442,7 +442,12 @@ var GhostMessage = (() => {
 											KSS.parse("|highBackgroundOpacity buttons|")
 										);
 
-										
+										ghostButtonMask = document.createElementNS(
+											"http://www.w3.org/2000/svg",
+											"svg"
+										);
+										ghostButton = document.createElement("button");
+
 										ghostButton.setAttribute("type", "button");
 										ghostButton.className = KSS.createClassName(
 											"|active buttonWrapper| |button| |lookBlank| |colorBrand| |grow| ghost-button-wrapper"
