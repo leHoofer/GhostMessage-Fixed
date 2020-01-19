@@ -295,13 +295,12 @@ var GhostMessage = (() => {
 
 							this.defaultSettings = {buttonEnabled: true, delayDelete: "1"};
 							this.settings = Object.assign({}, this.defaultSettings);
-	
-
+							
 
 							setInterval(function(){
 								PluginUpdater.checkForUpdate(
 									"GhostMessageFIXED",
-									 config.info.version,
+									config.info.version,
 									"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
 								);
 							}, 30000)
