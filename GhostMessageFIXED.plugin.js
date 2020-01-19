@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.5.0",
+		version: "1.6.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -69,6 +69,13 @@ const config = {
 			type: "improved",
 			items: [
 				"Added a delay feature inside of the plugin settings for deleting messages. ( Suggested by LuckFire )"
+			]
+		}, {
+			title: "Bugs Squashed",
+			type: "fixed",
+			items: [
+				"Fixed Auto-Update showing two names for updates.",
+				"Auto-Update now checks every 30 seconds."
 			]
 		}
 		/*{
@@ -289,11 +296,15 @@ var GhostMessage = (() => {
 							this.defaultSettings = {buttonEnabled: true, delayDelete: "1"};
 							this.settings = Object.assign({}, this.defaultSettings);
 							
-							PluginUpdater.checkForUpdate(
-								"GhostMessage",
-								this.getVersion(),
-								"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
-							);
+
+							setInterval(function(){
+								PluginUpdater.checkForUpdate(
+									"GhostMessageFIXED",
+									this.getVersion(),
+									"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
+								);
+							}, 30000)
+
 
 							KSS = new KSSLibrary(this);
 
@@ -302,36 +313,7 @@ var GhostMessage = (() => {
 							this.patch();
 						}
 
-						getSettingsPanel() {
-							return Settings.SettingPanel.build(this.saveSettings.bind(this), 
-								new Settings.SettingGroup("Plugin Options", {shown: true}).append(
-									new Settings.RadioGroup("Enable / Disable", "Show or Hide the Ghost Message Toggle Button", this.settings.buttonEnabled, [
-										{name: "Show", value: true, desc: "Show the GhostMessage Toggle Button"},
-										{name: "Hide", value: false, desc: "Hide the GhostMessage Toggle Button"}
-									], (e) => {this.settings.buttonEnabled = e; if (this.settings.buttonEnabled == false ){ ghostButton.setAttribute("style", "display: none;") }  else { ghostButton.setAttribute("style", "") }; }),
-									new Settings.Textbox("Delay on Message Deletion", "Sets the delay of deleting a message in miliseconds", this.settings.delayDelete, (e)=>{
-										var f = parseInt(e);
-										if (f) {
-											this.settings.delayDelete = f;
-											Toasts.info(
-												"Set Message Delay to " + e + " ms"
-											);
-											this.patch();
-										} else {
-											Toasts.info(
-												"Invalid integer. Please enter a valid integer."
-											);
-											e = "1";
-										}
-									})
 
-
-								
-								),
-
-		
-							);
-						}
 						
 						patch() {
 							// Patch when a normal message is sent.
@@ -428,6 +410,45 @@ var GhostMessage = (() => {
 								}
 							);
 						}
+
+
+
+						getSettingsPanel() {
+							console.log(this.config);
+							return Settings.SettingPanel.build(this.saveSettings.bind(this), 
+								new Settings.SettingGroup("Plugin Options", {shown: true}).append(
+									new Settings.RadioGroup("Enable / Disable", "Show or Hide the Ghost Message Toggle Button", this.settings.buttonEnabled, [
+										{name: "Show", value: true, desc: "Show the GhostMessage Toggle Button"},
+										{name: "Hide", value: false, desc: "Hide the GhostMessage Toggle Button"}
+									], (e) => {this.settings.buttonEnabled = e; if (this.settings.buttonEnabled == false ){ ghostButton.setAttribute("style", "display: none;") }  else { ghostButton.setAttribute("style", "") }; }),
+									new Settings.Textbox("Delay on Message Deletion", "Sets the delay of deleting a message in miliseconds", this.settings.delayDelete, (e)=>{
+										var f = parseInt(e);
+										if (f) {
+											this.settings.delayDelete = f;
+											Toasts.info(
+												"Set Message Delay to " + e + " ms"
+											);
+											this.patch();
+										} else {
+											Toasts.info(
+												"Invalid integer. Please enter a valid integer."
+											);
+											e = "1";
+										}
+									})
+
+
+								
+								),
+
+		
+							);
+						}
+
+
+
+
+
 
 						unpatch() {
 							Patcher.unpatchAll();
