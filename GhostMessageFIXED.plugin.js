@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.6.0",
+		version: "1.5.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -295,12 +295,13 @@ var GhostMessage = (() => {
 
 							this.defaultSettings = {buttonEnabled: true, delayDelete: "1"};
 							this.settings = Object.assign({}, this.defaultSettings);
-							
+	
+
 
 							setInterval(function(){
 								PluginUpdater.checkForUpdate(
 									"GhostMessageFIXED",
-									this.getVersion(),
+									 config.info.version,
 									"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
 								);
 							}, 30000)
