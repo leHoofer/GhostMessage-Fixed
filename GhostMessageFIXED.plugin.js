@@ -1,4 +1,4 @@
-//META{"name":"GhostMessage","website":https://www.twitter.com/leHoofer"","source":"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"}*//
+//META{"name":"GhostMessage","website":"https://www.twitter.com/leHoofer","source":"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"}*//
 
 /*@cc_on
 @if (@_jscript)
