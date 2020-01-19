@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.4.0",
+		version: "1.5.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -56,14 +56,21 @@ const config = {
 		//   "items": ["Removed the Revenge Ping button."]
 		// }
 		// ,
-		{
+		/*{
 		  title: "Bugs Squashed",
 		  type: "fixed",
 		  items: [
 			"Fixed Ghost Message Button not working when going into other Channels.",
 			"Fixed Ghost Message Button re-appearing when opening a different channel if the button was disabled."
 		  ]
-		},
+		},*/
+		{
+			title: "New Stuff",
+			type: "improved",
+			items: [
+				"Added a delay feature inside of the plugin settings for deleting messages. ( Suggested by LuckFire )"
+			]
+		}
 		/*{
 			title:"Improvements",
 			type: "improved",
@@ -279,7 +286,7 @@ var GhostMessage = (() => {
 								getLibraries_220584715265114113();
 							}
 
-							this.defaultSettings = {buttonEnabled: true};
+							this.defaultSettings = {buttonEnabled: true, delayDelete: "1"};
 							this.settings = Object.assign({}, this.defaultSettings);
 							
 							PluginUpdater.checkForUpdate(
@@ -301,8 +308,28 @@ var GhostMessage = (() => {
 									new Settings.RadioGroup("Enable / Disable", "Show or Hide the Ghost Message Toggle Button", this.settings.buttonEnabled, [
 										{name: "Show", value: true, desc: "Show the GhostMessage Toggle Button"},
 										{name: "Hide", value: false, desc: "Hide the GhostMessage Toggle Button"}
-									], (e) => {this.settings.buttonEnabled = e; if (this.settings.buttonEnabled == false ){ ghostButton.setAttribute("style", "display: none;") }  else { ghostButton.setAttribute("style", "") }; })
-								)
+									], (e) => {this.settings.buttonEnabled = e; if (this.settings.buttonEnabled == false ){ ghostButton.setAttribute("style", "display: none;") }  else { ghostButton.setAttribute("style", "") }; }),
+									new Settings.Textbox("Delay on Message Deletion", "Sets the delay of deleting a message in miliseconds", this.settings.delayDelete, (e)=>{
+										var f = parseInt(e);
+										if (f) {
+											this.settings.delayDelete = f;
+											Toasts.info(
+												"Set Message Delay to " + e + " ms"
+											);
+											this.patch();
+										} else {
+											Toasts.info(
+												"Invalid integer. Please enter a valid integer."
+											);
+											e = "1";
+										}
+									})
+
+
+								
+								),
+
+		
 							);
 						}
 						
@@ -317,11 +344,14 @@ var GhostMessage = (() => {
 									if (enabled) {
 										returnValue.then((result) => {
 											try {
-												channel.messages
+												setTimeout(function(){
+													channel.messages
 													.find((message) => {
 														return message.id == result.body.id;
 													})
 													.delete();
+												}, parseInt(this.settings.delayDelete))
+
 											} catch (e) {
 												DiscordAPI.currentChannel.sendBotMessage(
 													"Failed to delete your message!\nDon't switch channels so fast, I couldn't catch where that message landed!"
