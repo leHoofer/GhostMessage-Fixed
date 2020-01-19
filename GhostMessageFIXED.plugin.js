@@ -298,10 +298,10 @@ var GhostMessage = (() => {
 							this.settings = Object.assign({}, this.defaultSettings);
 							
 
-
+								var currentver = config.info.version;
 								PluginUpdater.checkForUpdate(
 									"GhostMessageFIXED",
-									config.info.version,
+									currentver,
 									"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
 								);
 
