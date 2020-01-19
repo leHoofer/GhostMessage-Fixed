@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.7.0",
+		version: "1.7.1",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -76,7 +76,7 @@ const config = {
 			type: "fixed",
 			items: [
 				"Fixed Auto-Update showing two names for updates. (1.6.0)",
-				"Auto-Update now checks every 30 seconds. (1.6.0)"
+				"A̶u̶t̶o̶-̶U̶p̶d̶a̶t̶e̶ ̶n̶o̶w̶ ̶c̶h̶e̶c̶k̶s̶ ̶e̶v̶e̶r̶y̶ ̶3̶0̶ ̶s̶e̶c̶o̶n̶d̶s̶.̶  REMOVED AS OF 1.7.1 (1.6.0) (1.7.1)"
 			]
 		}
 		/*{
@@ -298,13 +298,12 @@ var GhostMessage = (() => {
 							this.settings = Object.assign({}, this.defaultSettings);
 							
 
-							setInterval(function(){
+
 								PluginUpdater.checkForUpdate(
 									"GhostMessageFIXED",
 									config.info.version,
 									"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"
 								);
-							}, 30000)
 
 
 							KSS = new KSSLibrary(this);
