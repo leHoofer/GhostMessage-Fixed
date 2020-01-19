@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.6.0",
+		version: "1.7.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -68,14 +68,15 @@ const config = {
 			title: "New Stuff",
 			type: "improved",
 			items: [
-				"Added a delay feature inside of the plugin settings for deleting messages. ( Suggested by LuckFire )"
+				"Added a delay feature inside of the plugin settings for deleting messages. ( Suggested by LuckFire ) (1.5.0)",
+				"Made it so button transparency is none when the button is ENABLED. (1.7.0)"
 			]
 		}, {
 			title: "Bugs Squashed",
 			type: "fixed",
 			items: [
-				"Fixed Auto-Update showing two names for updates.",
-				"Auto-Update now checks every 30 seconds."
+				"Fixed Auto-Update showing two names for updates. (1.6.0)",
+				"Auto-Update now checks every 30 seconds. (1.6.0)"
 			]
 		}
 		/*{
@@ -582,10 +583,12 @@ var GhostMessage = (() => {
 							if (ghostInner && ghostInner.children[0] && enabled) {
 								//ghostInner.setAttribute("style", "filter: contrast(2);");
 								ghostInner.children[0].setAttribute("style", "transform: scale(1.2); color: #F04747;");
+								ghostButton.setAttribute("style", "opacity: 1");
 								
 							} else if (ghostInner && ghostInner.children[0] && !enabled) {
 								ghostInner.setAttribute("style", "");
 								ghostInner.children[0].setAttribute("style", "");
+								ghostButton.setAttribute("style", "");
 							}
 						}
 
