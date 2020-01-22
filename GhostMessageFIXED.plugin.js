@@ -1,4 +1,4 @@
-//META{"name":"GhostMessage","website":"https://www.twitter.com/leHoofer","source":"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"}*//
+//META{"name":"GhostMessageFIXED","website":"https://www.twitter.com/leHoofer","source":"https://raw.githubusercontent.com/leHoofer/GhostMessage-Fixed/master/GhostMessageFIXED.plugin.js"}*//
 
 /*@cc_on
 @if (@_jscript)
@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.8.0",
+		version: "1.8.1",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -83,7 +83,8 @@ const config = {
 			title: "Bugs Squashed",
 			type: "fixed",
 			items: [
-				"Fixed settings not auto-loading upon reload. (1.8.0)"
+				"Fixed settings not auto-loading upon reload. (1.8.0)",
+				"Behind the scenes stuff (1.8.1)"
 			]
 		}
 		/*{
@@ -226,7 +227,7 @@ String.prototype.replaceAll = function(find, replace) {
 	);
 };
 
-var GhostMessage = (() => {
+var GhostMessageFIXED = (() => {
 
 
 	return !global.ZeresPluginLibrary
@@ -295,7 +296,7 @@ var GhostMessage = (() => {
 
 					var KSS = null;
 
-					return class GhostMessage extends Plugin {
+					return class GhostMessageFIXED extends Plugin {
 						onStart() {
 							if (!window.KSSLibrary) {
 								getLibraries_220584715265114113();
