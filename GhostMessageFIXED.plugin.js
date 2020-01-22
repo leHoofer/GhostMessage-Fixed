@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.7.1",
+		version: "1.8.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -64,7 +64,7 @@ const config = {
 			"Fixed Ghost Message Button re-appearing when opening a different channel if the button was disabled."
 		  ]
 		},*/
-		{
+		/*{
 			title: "New Stuff",
 			type: "improved",
 			items: [
@@ -77,6 +77,13 @@ const config = {
 			items: [
 				"Fixed Auto-Update showing two names for updates. (1.6.0)",
 				"A̶u̶t̶o̶-̶U̶p̶d̶a̶t̶e̶ ̶n̶o̶w̶ ̶c̶h̶e̶c̶k̶s̶ ̶e̶v̶e̶r̶y̶ ̶3̶0̶ ̶s̶e̶c̶o̶n̶d̶s̶.̶  REMOVED AS OF 1.7.1 (1.6.0) (1.7.1)"
+			]
+		}*/
+		{
+			title: "Bugs Squashed",
+			type: "fixed",
+			items: [
+				"Fixed settings not auto-loading upon reload. (1.8.0)"
 			]
 		}
 		/*{
@@ -293,10 +300,10 @@ var GhostMessage = (() => {
 							if (!window.KSSLibrary) {
 								getLibraries_220584715265114113();
 							}
-
+							
 							this.defaultSettings = {buttonEnabled: true, delayDelete: "1"};
 							this.settings = Object.assign({}, this.defaultSettings);
-							
+							this.settings = this.loadSettings(this.defaultSettings);
 
 								var currentver = config.info.version;
 								PluginUpdater.checkForUpdate(
