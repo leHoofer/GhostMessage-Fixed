@@ -43,7 +43,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.8.1",
+		version: "1.9.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -83,8 +83,7 @@ const config = {
 			title: "Bugs Squashed",
 			type: "fixed",
 			items: [
-				"Fixed settings not auto-loading upon reload. (1.8.0)",
-				"Behind the scenes stuff (1.8.1)"
+				"Added right click for opening settings (1.9.0)",
 			]
 		}
 		/*{
@@ -546,6 +545,12 @@ var GhostMessageFIXED = (() => {
 										ghostButtonInner.appendChild(ghostButtonMask);
 										ghostButton.appendChild(ghostButtonInner);
 										daButtons.insertBefore(ghostButton, daButtons.firstChild);
+
+                                        ghostButton.addEventListener("contextmenu", (e)=>{
+                                            if (e.button == 2){
+                                                BdApi.getPlugin("GhostMessageFIXED").showSettingsModal();
+                                            }
+                                        })
 
 										ghostButton.onclick = () => {
 											var channel = DiscordAPI.currentChannel;
