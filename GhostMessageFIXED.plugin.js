@@ -46,7 +46,7 @@ const config = {
 				github_username: "KyzaGitHub"
 			}
 		],
-		version: "1.11.0",
+		version: "1.12.0",
 		description: "Send messages that delete themselves. | Fixed by Hoofer",
 		github:
 			"https://github.com/leHoofer/GhostMessage-Fixed/",
@@ -86,7 +86,7 @@ const config = {
 			title: "Bugs Squashed",
 			type: "fixed",
 			items: [
-				"Fixed positioning. (1.11.0)",
+				"Fixed button popping out of position when enabled. (1.12.0)",
 			]
 		}
 		/*{
@@ -600,7 +600,7 @@ var GhostMessageFIXED = (() => {
 							if (ghostInner && ghostInner.children[0] && enabled) {
 								//ghostInner.setAttribute("style", "filter: contrast(2);");
 								ghostInner.children[0].setAttribute("style", "transform: scale(1.2); color: #F04747;");
-								ghostButton.setAttribute("style", "opacity: 1");
+								ghostButton.setAttribute("style", "opacity: 1; margin: 0px; padding: 0px;");
 								
 							} else if (ghostInner && ghostInner.children[0] && !enabled) {
 								ghostInner.setAttribute("style", "");
